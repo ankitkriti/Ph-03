@@ -250,7 +250,7 @@ def func(save_path, Filename):
     print("detected value:", result)
     time =  Filename[-1][3:-4]
     time = datetime.datetime.strptime(time, '%Y-%m-%d-%H-%M-%S')
-    stored_value.append(result)
+    stored_value.append(round(result,1))
     i=0
 #   pdb.set_trace()
     str_current = str(stored_value[-1])
