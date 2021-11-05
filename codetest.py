@@ -35,6 +35,7 @@ from collections import deque
 import csv
 import pdb
 import config_WM
+import psutil
 
 
 def access_csv(device_id, column):
