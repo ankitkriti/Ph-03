@@ -438,6 +438,8 @@ def main():
             
             daterec = []
             func(save_path, Filename)
+            path = '/'
+            use_percent = psutil.disk_usage(path).percent
             os.remove(save_path)
             t2 = int(time.time())
             # wait()
