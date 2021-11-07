@@ -440,8 +440,9 @@ def main():
             func(save_path, Filename)
             path = '/'
             use_percent = psutil.disk_usage(path).percent
-            if use_percent > 70:
-                os.remove(save_path)
+            if use_percent < 80:
+                if f_rate[-1] == 0:
+                    os.remove(save_path)
             t2 = int(time.time())
             # wait()
             delay = 60 - (t2-t1)
