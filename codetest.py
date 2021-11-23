@@ -327,7 +327,7 @@ def func(save_path, Filename):
     result_file = open(access_csv(config_WM.device_id, "rate_file"), 'a')
     result_file.writelines([str(time)  + ' ' + str(f_rate[-1]) + '\n'])
     result_file.close()
-    file_stored_value = str(stored_value[-1])
+    file_stored_value = str(round(stored_value[-1],1))
     #write
     print("Wrote on a file")
     f = open('Variable.txt','w')
