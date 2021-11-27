@@ -448,7 +448,7 @@ def main():
                     url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
                     image_path=save_path
                     with open(image_path, "rb") as image_file:
-                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=2)
+                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=7)
                         print(ret)
 
                 except:
