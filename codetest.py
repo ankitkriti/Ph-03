@@ -447,9 +447,16 @@ def main():
                     data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": config_WM.device_id}
                     url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
                     image_path=save_path
-                    with open(image_path, "rb") as image_file:
+                    
+                    new_image = cv2.imread(image_path)
+                    new_path = "/home/pi/Desktop/test_send.jpg"
+                    cv2.imwrite(new_path, new_image)
+                    
+                    with open(new_path, "rb") as image_file:
                         ret = requests.post(url, data=data, files={"photo": image_file}, timeout=7)
                         print(ret)
+                    os.remove(new_path)
+                    
 
                 except:
                     pass
