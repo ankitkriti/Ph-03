@@ -449,12 +449,12 @@ def main():
                     image_path=save_path
                     
                     new_image = cv2.imread(image_path)
-                    new_image = cv2.resize(new_image, (192,108))
+                    new_image = cv2.resize(new_image, (88,50))
                     new_path = "/home/pi/Desktop/test_send.jpg"
                     cv2.imwrite(new_path, new_image)
                     
                     with open(new_path, "rb") as image_file:
-                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=7)
+                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=10)
                         print(ret)
                     os.remove(new_path)
                     
