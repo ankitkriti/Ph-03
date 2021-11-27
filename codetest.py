@@ -449,7 +449,7 @@ def main():
                     image_path=save_path
                     
                     new_image = cv2.imread(image_path)
-                    new_image = cv2.resize(new_image, (88,50))
+                    new_image = cv2.resize(new_image, (150,84))
                     new_path = "/home/pi/Desktop/test_send.jpg"
                     cv2.imwrite(new_path, new_image)
                     
