@@ -441,17 +441,18 @@ def main():
             path = '/'
             use_percent = psutil.disk_usage(path).percent
             
-            try:
-                _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
-                data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": config_WM.device_id}
-                url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
-                image_path=save_path
-                with open(image_path, "rb") as image_file:
-                    ret = requests.post(url, data=data, files={"photo": image_file})
-                    print(ret)
-                
-            except:
-                pass
+            if str(congif_WM.send_img) == "1":
+                try:
+                    _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
+                    data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": config_WM.device_id}
+                    url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
+                    image_path=save_path
+                    with open(image_path, "rb") as image_file:
+                        ret = requests.post(url, data=data, files={"photo": image_file})
+                        print(ret)
+
+                except:
+                    pass
             
             if use_percent < 80:
                 if f_rate[-1] == 0:
