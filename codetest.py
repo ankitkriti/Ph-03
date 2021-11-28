@@ -468,8 +468,8 @@ def main():
             t2 = int(time.time())
             # wait()
             delay = 60 - (t2-t1)
-            if delay < 0:
-                delay = 0
+            if delay <= 0:
+                delay = 0.5
 
             time.sleep(delay)
     except KeyboardInterrupt:
