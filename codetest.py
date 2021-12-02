@@ -127,6 +127,7 @@ RESIZED_IMAGE_WIDTH = 45
 RESIZED_IMAGE_HEIGHT = 90
 CROP_COORD = 540
 memory_path = "/home"
+count_internet = 0
 
 def checkInternetSocket(host="8.8.8.8", port=53, timeout=3):
     try:
@@ -337,8 +338,15 @@ def func(save_path, Filename):
 #write google-sheets, thingspeak or om2m code here   
     try:
         requests.get('https://script.google.com/macros/s/' + access_csv(config_WM.device_id, "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s'%(str(Filename[-1][3:-4]),str(round(stored_value[-1], 1)),str(f_rate[-1])))
+        count_internet = 0
     except:
-        print("Not send to google sheets")   
+        print("Not send to google sheets")
+        count_check = checkInternetSocket()
+        if count_check:
+            count_internet+=1
+        if count_internet>10:
+            os.system("sudo systemctl restart codetest.service")
+            
     cons+= 1
     #print(cons)
     
