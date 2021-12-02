@@ -344,7 +344,7 @@ def func(save_path, Filename):
         count_check = checkInternetSocket()
         if count_check:
             count_internet+=1
-        if count_internet>10:
+        if count_internet>7:
             os.system("sudo systemctl restart codetest.service")
             
     cons+= 1
