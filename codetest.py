@@ -471,8 +471,9 @@ def main():
                     pass
             
             if use_percent < 80:
-                if f_rate[-1] == 0:
-                    os.remove(save_path)
+                #if f_rate[-1] == 0:
+                os.remove(save_path)
+                
             t2 = int(time.time())
             # wait()
             delay = 60 - (t2-t1)
