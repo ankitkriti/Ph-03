@@ -452,7 +452,7 @@ def main():
             if str(access_csv(config_WM.device_id, "send_img")) == "1":
                 try:
                     _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
-                    data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": config_WM.device_id}
+                    data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": str(config_WM.device_id)+str(use_percent)}
                     url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
                     image_path=save_path
                     
