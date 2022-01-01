@@ -462,7 +462,7 @@ def main():
                     cv2.imwrite(new_path, new_image)
                     
                     with open(new_path, "rb") as image_file:
-                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=10)
+                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=5)
                         print(ret)
                     os.remove(new_path)
                     
