@@ -279,7 +279,7 @@ def func(save_path, Filename):
         elif(len(str_prev)==4):
             str_prev=('0000'+str_prev)
 
-    while((stored_value[-2]-stored_value[-1]>=10 or stored_value[-2]-stored_value[-1]<=-10 ) and (k >= 1)):
+    while((stored_value[-2]-stored_value[-1]>=5 or stored_value[-2]-stored_value[-1]<=-5) and (k >= 0)):
         current_value = (str_current[i])
         prev_value = (str_prev[i])
         current_value=int(current_value)
