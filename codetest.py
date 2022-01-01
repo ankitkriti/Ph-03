@@ -450,25 +450,26 @@ def main():
             use_percent = psutil.disk_usage(path).percent
             
             if str(access_csv(config_WM.device_id, "send_img")) == "1":
-                try:
-                    _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
-                    data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": str(config_WM.device_id)+str(use_percent)}
-                    url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
-                    image_path=save_path
-                    
-                    new_image = cv2.imread(image_path)
-                    new_image = cv2.resize(new_image, (150,84))
-                    new_path = "/home/pi/Desktop/test_send.jpg"
-                    cv2.imwrite(new_path, new_image)
-                    
-                    with open(new_path, "rb") as image_file:
-                        ret = requests.post(url, data=data, files={"photo": image_file}, timeout=5)
-                        print(ret)
-                    os.remove(new_path)
-                    
+                if (((datetime.datetime.now().hour == 6) or (datetime.datetime.now().hour == 18)) and (datetime.datetime.now().hour == 1)):
+                    try:
+                        _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
+                        data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": str(config_WM.device_id)+str(use_percent)}
+                        url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
+                        image_path=save_path
 
-                except:
-                    pass
+                        new_image = cv2.imread(image_path)
+                        new_image = cv2.resize(new_image, (150,84))
+                        new_path = "/home/pi/Desktop/test_send.jpg"
+                        cv2.imwrite(new_path, new_image)
+
+                        with open(new_path, "rb") as image_file:
+                            ret = requests.post(url, data=data, files={"photo": image_file}, timeout=10)
+                            print(ret)
+                        os.remove(new_path)
+
+
+                    except:
+                        pass
             
             #if use_percent < 80:
                 #if f_rate[-1] == 0:
