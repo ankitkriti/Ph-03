@@ -470,9 +470,9 @@ def main():
                 except:
                     pass
             
-            if use_percent < 80:
+            #if use_percent < 80:
                 #if f_rate[-1] == 0:
-                os.remove(save_path)
+                #os.remove(save_path)
                 
             t2 = int(time.time())
             # wait()
