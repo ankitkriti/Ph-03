@@ -446,6 +446,7 @@ def main():
             
             daterec = []
             func(save_path, Filename)
+            print("after gsheets")
             path = '/'
             use_percent = psutil.disk_usage(path).percent
             
