@@ -448,12 +448,12 @@ def main():
             func(save_path, Filename)
             path = '/'
             use_percent = psutil.disk_usage(path).percent
-            sen_value_caption = str(config_WM.device_id)+str(use_percent)
+            
             if str(access_csv(config_WM.device_id, "send_img")) == "1":
                 if (((datetime.datetime.now().hour == 6) or (datetime.datetime.now().hour == 18)) and (datetime.datetime.now().hour == 1)):
                     try:
                         _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
-                        data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": sen_value_caption}
+                        data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": str(config_WM.device_id)+str(use_percent)}
                         url = "https://api.telegram.org/%s/sendPhoto" % _TOKEN
                         image_path=save_path
 
@@ -470,10 +470,6 @@ def main():
 
                     except:
                         pass
-            
-            #if use_percent < 80:
-                #if f_rate[-1] == 0:
-                #os.remove(save_path)
                 
             t2 = int(time.time())
             # wait()
