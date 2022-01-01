@@ -476,6 +476,7 @@ def main():
             delay = 60 - (t2-t1)
             if delay <= 0:
                 delay = 0.5
+            print(delay)
 
             time.sleep(delay)
     except KeyboardInterrupt:
