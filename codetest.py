@@ -451,7 +451,7 @@ def main():
             use_percent = psutil.disk_usage(path).percent
             
             if str(access_csv(config_WM.device_id, "send_img")) == "1":
-                if (datetime.datetime.now().minute <= 45):
+                if (datetime.datetime.now().minute <= 3):
                     try:
                         _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
                         data = {"chat_id": "@IIIT_Bot_WM_RF", "caption": str(node_dict[str(config_WM.device_id)])+str(" (Mem Usg: ")+str(use_percent)+str(")")}
