@@ -128,7 +128,7 @@ RESIZED_IMAGE_HEIGHT = 90
 CROP_COORD = 540
 memory_path = "/home"
 count_internet = 0
-node_dict={"PH-03":"Pump House 3", "PH-02":"Pump House 2", "PR00-70":"Parijaat", "AD04-70":"Himalaya Rooftop 1", "AD04-71":"Himalaya Rooftop 2", "KB04-72":"Himalaya Rooftop 3", "KB04-73":"Himalaya Rooftop 4", "OBH00-70":"Palash Nivas 1", "OBH00-71":"Palash Nivas 1", "PH04-70":"Bakul Nivas 1", "PH04-71":"Bakul Nivas 1", "VN04-70":"Vindhya Rooftop 1", "VN04-71":"Vindhya Rooftop 2", "BB04-70":"Bodh Bhavan Rooftop 1", "BB04-71":"Bodh Bhavan Rooftop 2"}
+node_dict={"PH-03":"Pump House 3", "PH-02":"Pump House 2", "PR00-70":"Parijaat", "AD04-70":"Himalaya Rooftop 1", "AD04-71":"Himalaya Rooftop 2", "KB04-72":"Himalaya Rooftop 3", "KB04-73":"Himalaya Rooftop 4", "OBH00-70":"Palash Nivas 1", "OBH00-71":"Palash Nivas 2", "PH04-70":"Bakul Nivas 1", "PH04-71":"Bakul Nivas 2", "VN04-70":"Vindhya Rooftop 1", "VN04-71":"Vindhya Rooftop 2", "BB04-70":"Bodh Bhavan Rooftop 1", "BB04-71":"Bodh Bhavan Rooftop 2"}
 def checkInternetSocket(host="8.8.8.8", port=53, timeout=3):
     try:
         socket.setdefaulttimeout(timeout)
