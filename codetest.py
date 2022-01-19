@@ -478,6 +478,10 @@ def main():
             if delay <= 0:
                 delay = 0.5
             print(delay)
+            
+            if use_percent > 80:
+                #if f_rate[-1] == 0:
+                os.remove(save_path)
 
             time.sleep(delay)
     except KeyboardInterrupt:
