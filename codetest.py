@@ -479,7 +479,7 @@ def main():
                 delay = 0.5
             print(delay)
             
-            if use_percent > 80:
+            if use_percent > 80 or (datetime.datetime.now().minute // 5 != 0):
                 #if f_rate[-1] == 0:
                 os.remove(save_path)
 
