@@ -337,7 +337,7 @@ def func(save_path, Filename):
 
 #write google-sheets, thingspeak or om2m code here   
     try:
-        requests.get('https://script.google.com/macros/s/' + access_csv(config_WM.device_id, "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s'%(str(Filename[-1][3:-4]),str(round(stored_value[-1], 1)),str(f_rate[-1])))
+        requests.get('https://script.google.com/macros/s/' + access_csv(config_WM.device_id, "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s&datval=%s'%(str(Filename[-1][3:-4]),str(round(stored_value[-1], 1)),str(f_rate[-1]),str(result)))
         count_internet = 0
     except:
         print("Not send to google sheets")
