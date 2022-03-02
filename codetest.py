@@ -450,6 +450,27 @@ def main():
             path = '/'
             use_percent = psutil.disk_usage(path).percent
             
+            hello=requests.get("https://script.google.com/macros/s/AKfycbwRYxc69FWSf_qaZVlNx7ACr5UkRysUmzN_24v91yj0jgAVxR2KfGlX7XW1But5d6a7/exec")
+            new_ar = hello.content.decode("utf-8").strip('][').split(',')
+            for i in range(len(new_ar)):
+                new_ar[i] = float(new_ar[i])
+            print(new_ar)
+            new_val = new_ar[int(access_csv(config_WM.device_id, "sno"))-1]
+            var = open('var2.txt', 'r')
+            read_var = float(var.read())
+            var.close()
+            if read_var == new_val:
+                print("ok")
+            else:
+                write_val = open("var2.txt", "w")
+                write_val.write(str(new_val))
+                write_val.close()
+                write_val2 = open("Variable.txt", "w")
+                write_val2.write(str(new_val))
+                write_val2.close()
+                print("changed.......")
+                os.system("sudo systemctl restart codetest.service")
+                
             if str(access_csv(config_WM.device_id, "send_img")) == "1":
                 if (datetime.datetime.now().minute <= 5):
                     try:
