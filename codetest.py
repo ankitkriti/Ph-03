@@ -500,9 +500,15 @@ def main():
                 delay = 0.5
             print(delay)
             
-            if use_percent > 80 and (datetime.datetime.now().minute % 5 != 0):
+            if use_percent > 80:
                 #if f_rate[-1] == 0:
                 os.remove(save_path)
+                
+            if (datetime.datetime.now().minute % 5 != 0):
+                try:
+                    os.remove(save_path)
+                except:
+                    pass
 
             time.sleep(delay)
     except KeyboardInterrupt:
