@@ -157,9 +157,10 @@ def checkInternetSocket(host="8.8.8.8", port=53, timeout=3):
 
 def get_time():
     # Get time stamp
-    ct = datetime.datetime.now ()
-    time_stamp = (str (ct.year) + '-' + str (ct.month) + '-' + str (ct.day) + ' ' +
-                  str (ct.hour) + ':' + str (ct.minute) + ':' + str (ct.second))
+    ct = datetime.datetime.now()
+    time_stamp = (str(ct.year) + '-' + str(ct.month) + '-' + str(ct.day) + ' ' + str(ct.hour) + ':' + str(ct.minute) + ':' + str(ct.second))
+    print("time tamp = ")
+    print(time_stamp)
     return time_stamp
 
 
