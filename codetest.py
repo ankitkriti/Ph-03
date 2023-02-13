@@ -541,7 +541,7 @@ if __name__ == '__main__':
     f.close ()
     reading_file = float (reading_file)
     stored_value.append (reading_file)  # 33875.3
-    Filename.append (str (datetime.datetime.now ().strftime ("img%Y-%m-%d-%H-%M-%S") + ".jpg"))
+    Filename.append (str(datetime.datetime.now ().strftime ("img%Y-%m-%d-%H-%M-%S") + ".jpg"))
     time.sleep (1)
     main ()
 
