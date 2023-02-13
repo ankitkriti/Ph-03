@@ -155,13 +155,13 @@ def checkInternetSocket(host="8.8.8.8", port=53, timeout=3):
 
 
 
-def get_time():
-    # Get time stamp
-    ct = datetime.datetime.now()
-    time_stamp = (str(ct.year) + '-' + str(ct.month) + '-' + str(ct.day) + ' ' + str(ct.hour) + ':' + str(ct.minute) + ':' + str(ct.second))
-    print("time tamp = ")
-    print(time_stamp)
-    return time_stamp
+# def get_time():
+#     # Get time stamp
+#     ct = datetime.datetime.now()
+#     time_stamp = (str(ct.year) + '-' + str(ct.month) + '-' + str(ct.day) + ' ' + str(ct.hour) + ':' + str(ct.minute) + ':' + str(ct.second))
+#     print("time tamp = ")
+#     print(time_stamp)
+#     return time_stamp
 
 
 def wait():
@@ -194,7 +194,7 @@ def cam(save_path):
 
 
 device_id = config_WM.device_id  # "PH-03"
-time_stamp = get_time ()
+# time_stamp = get_time ()
 
 
 def get_sorted_contour(img):
