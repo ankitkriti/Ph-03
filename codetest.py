@@ -36,7 +36,7 @@ import psutil
 
 
 error_log1 = []
-str = "loaded libraries"
+strr = "loaded libraries"
 error_log1.append(str)
 
 
@@ -180,7 +180,7 @@ def cam(save_path):
 
 
     error_log5 = []
-    str = "cam captured"
+    strr = "cam captured"
     error_log5.append (str)
 
 
@@ -189,7 +189,7 @@ def cam(save_path):
 
 
     error_log6 = []
-    str = "cam closed"
+    strr = "cam closed"
     error_log6.append (str)
 
 
@@ -247,14 +247,14 @@ def func(save_path, Filename):
     contours = get_sorted_contour (img_meter.copy ())
 
     error_log7 = []
-    str = "contours made"
+    strr = "contours made"
     error_log7.append (str)
 
 
     model = joblib.load ('rf_rasp_classifier.sav')  #
 
     error_log8 = []
-    str = "model loaded"
+    strr = "model loaded"
     error_log8.append (str)
 
 
@@ -304,7 +304,7 @@ def func(save_path, Filename):
 
 
     error_log9 = []
-    str = "Before constraints (detection done)"
+    strr = "Before constraints (detection done)"
     error_log9.append (str)
 
 ######################### constraints ####################
@@ -335,7 +335,7 @@ def func(save_path, Filename):
 ###########################################################
 
     error_log10 = []
-    str = "after constraints "
+    strr = "after constraints "
     error_log10.append (str)
 
 
@@ -383,7 +383,7 @@ def func(save_path, Filename):
     f.close ()
 
     error_log11 = []
-    str = "before sending to gsheet "
+    strr = "before sending to gsheet "
     error_log11.append (str)
 
     # storing in google sheet
@@ -397,7 +397,7 @@ def func(save_path, Filename):
         count_check = checkInternetSocket ()
 
         error_log2 = []
-        str = "Checked internet"
+        strr = "Checked internet"
         error_log2.append (str)
 
 
@@ -433,14 +433,14 @@ def main():
             save_path = '/home/pi/Desktop/images/' + str (Filename[-1])
 
             error_log3 = []
-            str = "Before cam func"
+            strr = "Before cam func"
             error_log3.append (str)
 
 
             cam (save_path)
 
             error_log4 = []
-            str = "after cam func"
+            strr = "after cam func"
             error_log4.append (str)
 
 
