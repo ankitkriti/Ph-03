@@ -231,6 +231,7 @@ def get_sorted_contour(img):
 
 
 def func(save_path, Filename):
+    count_internet = 0
     global cons
     img = sio.imread (save_path)
     # img = sio.imread("/home/pi/Desktop/images/img2021-08-05-22-52-56.jpg")
