@@ -285,10 +285,10 @@ def func(save_path, Filename):
     print ("detected value:", result)
 
     imgtime1 = Filename[-1][8:-4]
-    imgtime1 = datetime.strptime (imgtime1, '%m-%d-%H-%M-%S')
+    imgtime1 = datetime.datetime.strptime(imgtime1, '%m-%d-%H-%M-%S')
 
     imgtime2 = Filename[-2][8:-4]
-    imgtime2 = datetime.strptime (imgtime2, '%m-%d-%H-%M-%S')
+    imgtime2 = datetime.datetime.strptime (imgtime2, '%m-%d-%H-%M-%S')
 
     time_diff = imgtime1 - imgtime2
     print (time_diff)
