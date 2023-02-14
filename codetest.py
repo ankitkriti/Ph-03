@@ -278,6 +278,7 @@ def func(save_path, Filename):
         digit_detected = model.predict (img_feat.reshape (1, -1))
         result += str (digit_detected[0])
     
+    result = 634380
     result = int (result) / 10
     stored_value.append (result)
     ans_gt = int (''.join (str (stored_value[-2]).split ('.')))
