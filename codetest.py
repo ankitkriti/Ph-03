@@ -245,14 +245,14 @@ def func(save_path, Filename):
     # plt.title("Extracted Meter")
     # plt.show()
 
-    contours = get_sorted_contour (img_meter.copy ())
+#     contours = get_sorted_contour (img_meter.copy ())
 
     error_log7 = []
     strr = "contours made"
     error_log7.append (str)
 
 
-    model = joblib.load ('rf_rasp_classifier.sav')  #
+#     model = joblib.load ('rf_rasp_classifier.sav')  #
 
     error_log8 = []
     strr = "model loaded"
@@ -260,23 +260,23 @@ def func(save_path, Filename):
 
 
 
-    result = ''
-    for contour in contours:
-        [intX, intY, intW, intH] = cv2.boundingRect (contour)
-        imgROI = img_meter[intY:intY + intH, intX:intX + intW]
+#     result = ''
+#     for contour in contours:
+#         [intX, intY, intW, intH] = cv2.boundingRect (contour)
+#         imgROI = img_meter[intY:intY + intH, intX:intX + intW]
 
-        img = cv2.cvtColor (imgROI, cv2.COLOR_BGR2GRAY)
-        img = resize (img, (RESIZED_IMAGE_HEIGHT, RESIZED_IMAGE_WIDTH))
-        flower = cv2.morphologyEx (img, cv2.MORPH_CLOSE, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)))
-        flower = cv2.morphologyEx (flower, cv2.MORPH_OPEN,
-                                   cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (11, 11)))
+#         img = cv2.cvtColor (imgROI, cv2.COLOR_BGR2GRAY)
+#         img = resize (img, (RESIZED_IMAGE_HEIGHT, RESIZED_IMAGE_WIDTH))
+#         flower = cv2.morphologyEx (img, cv2.MORPH_CLOSE, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)))
+#         flower = cv2.morphologyEx (flower, cv2.MORPH_OPEN,
+#                                    cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (11, 11)))
 
-        img = cv2.erode (flower, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)), iterations=3)
-        img_feat = hog (img, orientations=9,
-                        pixels_per_cell=(8, 8),
-                        cells_per_block=(2, 2))
-        digit_detected = model.predict (img_feat.reshape (1, -1))
-        result += str (digit_detected[0])
+#         img = cv2.erode (flower, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)), iterations=3)
+#         img_feat = hog (img, orientations=9,
+#                         pixels_per_cell=(8, 8),
+#                         cells_per_block=(2, 2))
+#         digit_detected = model.predict (img_feat.reshape (1, -1))
+#         result += str (digit_detected[0])
     
     result = 634380
     result = int (result) / 10
