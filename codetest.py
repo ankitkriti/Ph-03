@@ -37,7 +37,7 @@ import psutil
 
 error_log1 = []
 strr = "loaded libraries"
-error_log1.append(str)
+error_log1.append(strr)
 
 
 
@@ -181,7 +181,7 @@ def cam(save_path):
 
     error_log5 = []
     strr = "cam captured"
-    error_log5.append (str)
+    error_log5.append (strr)
 
 
     camera.stop_preview ()
@@ -190,7 +190,7 @@ def cam(save_path):
 
     error_log6 = []
     strr = "cam closed"
-    error_log6.append (str)
+    error_log6.append (strr)
 
 
 device_id = config_WM.device_id  # "PH-03"
@@ -249,14 +249,14 @@ def func(save_path, Filename):
 
     error_log7 = []
     strr = "contours made"
-    error_log7.append (str)
+    error_log7.append (strr)
 
 
 #     model = joblib.load ('rf_rasp_classifier.sav')  #
 
     error_log8 = []
     strr = "model loaded"
-    error_log8.append (str)
+    error_log8.append (strr)
 
 
 
@@ -307,7 +307,7 @@ def func(save_path, Filename):
 
     error_log9 = []
     strr = "Before constraints (detection done)"
-    error_log9.append (str)
+    error_log9.append (strr)
 
 ######################### constraints ####################
     corr_val = 0
@@ -338,7 +338,7 @@ def func(save_path, Filename):
 
     error_log10 = []
     strr = "after constraints "
-    error_log10.append (str)
+    error_log10.append (strr)
 
 
 
@@ -386,7 +386,7 @@ def func(save_path, Filename):
 
     error_log11 = []
     strr = "before sending to gsheet "
-    error_log11.append (str)
+    error_log11.append (strr)
 
     # storing in google sheet
     try:
@@ -400,7 +400,7 @@ def func(save_path, Filename):
 
         error_log2 = []
         strr = "Checked internet"
-        error_log2.append (str)
+        error_log2.append (strr)
 
 
         if count_check:
@@ -436,14 +436,14 @@ def main():
 
             error_log3 = []
             strr = "Before cam func"
-            error_log3.append (str)
+            error_log3.append (strr)
 
 
             cam (save_path)
 
             error_log4 = []
             strr = "after cam func"
-            error_log4.append (str)
+            error_log4.append (strr)
 
 
             time.sleep (3)
