@@ -39,6 +39,7 @@ error_log1 = []
 strr = "loaded libraries"
 error_log1.append(strr)
 
+camera_error = []
 
 
 def access_csv(device_id, column):
@@ -182,6 +183,7 @@ def cam(save_path):
     error_log5 = []
     strr = "cam captured"
     error_log5.append (strr)
+    camera_error.append(error_log5)
 
 
     camera.stop_preview ()
@@ -191,6 +193,9 @@ def cam(save_path):
     error_log6 = []
     strr = "cam closed"
     error_log6.append (strr)
+    camera_error.append(error_log6)
+
+    return camera_error
 
 
 device_id = config_WM.device_id  # "PH-03"
@@ -230,7 +235,7 @@ def get_sorted_contour(img):
     return contours
 
 
-def func(save_path, Filename):
+def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
     count_internet = 0
     global cons
     img = sio.imread (save_path)
@@ -245,14 +250,14 @@ def func(save_path, Filename):
     # plt.title("Extracted Meter")
     # plt.show()
 
-#     contours = get_sorted_contour (img_meter.copy ())
+    contours = get_sorted_contour (img_meter.copy ())
 
     error_log7 = []
     strr = "contours made"
     error_log7.append (strr)
 
 
-#     model = joblib.load ('rf_rasp_classifier.sav')  #
+    model = joblib.load ('rf_rasp_classifier.sav')  #
 
     error_log8 = []
     strr = "model loaded"
@@ -260,25 +265,26 @@ def func(save_path, Filename):
 
 
 
-#     result = ''
-#     for contour in contours:
-#         [intX, intY, intW, intH] = cv2.boundingRect (contour)
-#         imgROI = img_meter[intY:intY + intH, intX:intX + intW]
+    result = ''
+    if(contours == None):
+        pass
+    for contour in contours:
+        [intX, intY, intW, intH] = cv2.boundingRect (contour)
+        imgROI = img_meter[intY:intY + intH, intX:intX + intW]
 
-#         img = cv2.cvtColor (imgROI, cv2.COLOR_BGR2GRAY)
-#         img = resize (img, (RESIZED_IMAGE_HEIGHT, RESIZED_IMAGE_WIDTH))
-#         flower = cv2.morphologyEx (img, cv2.MORPH_CLOSE, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)))
-#         flower = cv2.morphologyEx (flower, cv2.MORPH_OPEN,
-#                                    cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (11, 11)))
+        img = cv2.cvtColor (imgROI, cv2.COLOR_BGR2GRAY)
+        img = resize (img, (RESIZED_IMAGE_HEIGHT, RESIZED_IMAGE_WIDTH))
+        flower = cv2.morphologyEx (img, cv2.MORPH_CLOSE, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)))
+        flower = cv2.morphologyEx (flower, cv2.MORPH_OPEN,
+                                   cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (11, 11)))
 
-#         img = cv2.erode (flower, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)), iterations=3)
-#         img_feat = hog (img, orientations=9,
-#                         pixels_per_cell=(8, 8),
-#                         cells_per_block=(2, 2))
-#         digit_detected = model.predict (img_feat.reshape (1, -1))
-#         result += str (digit_detected[0])
-    
-    result = 634380
+        img = cv2.erode (flower, cv2.getStructuringElement (cv2.MORPH_ELLIPSE, (3, 3)), iterations=3)
+        img_feat = hog (img, orientations=9,
+                        pixels_per_cell=(8, 8),
+                        cells_per_block=(2, 2))
+        digit_detected = model.predict (img_feat.reshape (1, -1))
+        result += str (digit_detected[0])
+
     result = int (result) / 10
     stored_value.append (result)
     ans_gt = int (''.join (str (stored_value[-2]).split ('.')))
@@ -391,16 +397,16 @@ def func(save_path, Filename):
     # storing in google sheet
     try:
         requests.get ('https://script.google.com/macros/s/' + access_csv (config_WM.device_id,
-                                                                          "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s&datval=%s&error_log1=%s&error_log2=%s&error_log3=%s&error_log4=%s&error_log5=%s&error_log6=%s&error_log7=%s&error_log8=%s&error_log9=%s&error_log10=%s&error_log11=%s' % (
-                      str (Filename[-1][3:-4]), str (round (stored_value[-1], 1)), str (f_rate[-1]), str (result), str(error_log1[-1]), str(error_log2[-1]), str(error_log3[-1]), str(error_log4[-1]), str(error_log5[-1]), str(error_log6[-1]), str(error_log7[-1]), str(error_log8[-1]), str(error_log9[-1]), str(error_log10[-1]), str(error_log11[-1]) ))
+                                                                          "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s&datval=%s&error_log1=%s&error_log3=%s&error_log4=%s&error_log5=%s&error_log6=%s&error_log7=%s&error_log8=%s&error_log9=%s&error_log10=%s&error_log11=%s' % (
+                      str (Filename[-1][3:-4]), str (round (stored_value[-1], 1)), str (f_rate[-1]), str (result), str(error_log1[-1]), str(error_log3[-1]), str(error_log4[-1]), str(error_log5[-1]), str(error_log6[-1]), str(error_log7[-1]), str(error_log8[-1]), str(error_log9[-1]), str(error_log10[-1]), str(error_log11[-1]) ))
         count_internet = 0
     except:
         print ("Not send to google sheets")
-        count_check = checkInternetSocket ()
+        count_check = checkInternetSocket()
 
-        error_log2 = []
-        strr = "Checked internet"
-        error_log2.append (strr)
+        #error_log2 = []
+        #strr = "Checked internet"
+        #error_log2.append (strr)
 
 
         if count_check:
@@ -408,6 +414,7 @@ def func(save_path, Filename):
         if count_internet > 7:
             os.system ("sudo systemctl restart codetest.service")
 
+    camera_error = []
 ################################################################################
 
     # error_log11 = []
@@ -439,7 +446,7 @@ def main():
             error_log3.append (strr)
 
 
-            cam (save_path)
+            camera_error = cam (save_path)
 
             error_log4 = []
             strr = "after cam func"
@@ -453,7 +460,7 @@ def main():
 
 
             daterec = []
-            func (save_path, Filename)
+            func (save_path, Filename, error_log3, error_log4, camera_error[0], camera_error[1])
             print ("after gsheets")
             path = '/'
             use_percent = psutil.disk_usage (path).percent
@@ -546,9 +553,4 @@ if __name__ == '__main__':
     Filename.append(str(datetime.datetime.now().strftime("img%Y-%m-%d-%H-%M-%S") + ".jpg"))
     time.sleep (1)
     main ()
-
-
-
-
-
-
+    
