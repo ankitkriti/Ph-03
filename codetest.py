@@ -339,7 +339,7 @@ def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
             min_cnt = cnt
 
     stored_value[-1] = corr_val / 10
-    stored_value[-1] = 11111.1
+#     stored_value[-1] = 11111.1
 ###########################################################
 
     error_log10 = []
