@@ -318,7 +318,7 @@ def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
 ######################### constraints ####################
     corr_val = 0
 
-    for k in range (ans_gt, ans_gt + int (10 * time_diff), 1):
+    for k in range (ans_gt, ans_gt + int (1 * time_diff), 1):
 
         ans_str = str (ans)
         k_str = str (k)
