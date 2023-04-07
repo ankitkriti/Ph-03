@@ -220,14 +220,14 @@ def get_sorted_contour(img):
     contours, hierachy = cv2.findContours (thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours, bbox = sort_contours (contours)
     contours = [contour for contour in contours if cv2.contourArea (contour) >= MIN_CONTOUR_AREA]
-    for contour in contours:  # for each contour
-        [intX, intY, intW, intH] = cv2.boundingRect (contour)  # get and break out bounding rect
-        # draw rectangle around each contour
-        cv2.rectangle (img,  # draw rectangle on original training image
-                       (intX, intY),  # upper left corner
-                       (intX + intW, intY + intH),  # lower right corner
-                       (0, 0, 255),  # red
-                       3)  # thickness
+#     for contour in contours:  # for each contour
+#         [intX, intY, intW, intH] = cv2.boundingRect (contour)  # get and break out bounding rect
+#         # draw rectangle around each contour
+#         cv2.rectangle (img,  # draw rectangle on original training image
+#                        (intX, intY),  # upper left corner
+#                        (intX + intW, intY + intH),  # lower right corner
+#                        (0, 0, 255),  # red
+#                        3)  # thickness
     # plt.figure()
     # plt.imshow(img)
     # plt.title("Detected Contours")
