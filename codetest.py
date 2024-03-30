@@ -474,7 +474,7 @@ def main():
                 "https://script.google.com/macros/s/AKfycbwRYxc69FWSf_qaZVlNx7ACr5UkRysUmzN_24v91yj0jgAVxR2KfGlX7XW1But5d6a7/exec")
             new_ar = hello.content.decode ("utf-8").strip ('][').split (',')
             for i in range (len (new_ar)):
-                new_ar[i] = int (new_ar[i])
+                new_ar[i] = float (new_ar[i])
             print (new_ar)
             new_val = new_ar[int (access_csv (config_WM.device_id, "sno")) - 1]
             var = open ('var2.txt', 'r')
