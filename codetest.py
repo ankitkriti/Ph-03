@@ -203,38 +203,42 @@ device_id = config_WM.device_id  # "PH-03"
 
 
 def get_sorted_contour(img):
-    img_gray = cv2.cvtColor (img, cv2.COLOR_BGR2GRAY)
-    # img_gray = cv2.GaussianBlur(img_gray, (9, 9), 0)
-    img_gray = cv2.medianBlur (img_gray, 15)
-    thresh = cv2.adaptiveThreshold (img_gray, 255,
-                                    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                    cv2.THRESH_BINARY_INV,
-                                    33, 5)
-    kernel = np.ones ((3, 3), np.uint8)
-    thresh = cv2.dilate (thresh, kernel, iterations=5)
-    thresh = cv2.erode (thresh, kernel, iterations=2)
-    # plt.figure()
-    # plt.imshow(thresh)
-    # plt.title("Threshold Image")
-    # plt.show()
-    
-    contours, hierachy = cv2.findContours (thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    contours, bbox = sort_contours (contours)
-    contours = [contour for contour in contours if cv2.contourArea (contour) >= MIN_CONTOUR_AREA]
-    img2 = img.copy()
-    for contour in contours:  # for each contour
-        [intX, intY, intW, intH] = cv2.boundingRect (contour)  # get and break out bounding rect
-        # draw rectangle around each contour
-        cv2.rectangle (img2,  # draw rectangle on original training image
-                       (intX, intY),  # upper left corner
-                       (intX + intW, intY + intH),  # lower right corner
-                       (0, 0, 255),  # red
-                       3)  # thickness
-    # plt.figure()
-    # plt.imshow(img2)
-    # plt.title("Detected Contours")
-    # plt.show()
-    return contours
+    try:
+        img_gray = cv2.cvtColor (img, cv2.COLOR_BGR2GRAY)
+        # img_gray = cv2.GaussianBlur(img_gray, (9, 9), 0)
+        img_gray = cv2.medianBlur (img_gray, 15)
+        thresh = cv2.adaptiveThreshold (img_gray, 255,
+                                        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                        cv2.THRESH_BINARY_INV,
+                                        33, 5)
+        kernel = np.ones ((3, 3), np.uint8)
+        thresh = cv2.dilate (thresh, kernel, iterations=5)
+        thresh = cv2.erode (thresh, kernel, iterations=2)
+        # plt.figure()
+        # plt.imshow(thresh)
+        # plt.title("Threshold Image")
+        # plt.show()
+        
+        contours, hierachy = cv2.findContours (thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours, bbox = sort_contours (contours)
+        contours = [contour for contour in contours if cv2.contourArea (contour) >= MIN_CONTOUR_AREA]
+        img2 = img.copy()
+        for contour in contours:  # for each contour
+            [intX, intY, intW, intH] = cv2.boundingRect (contour)  # get and break out bounding rect
+            # draw rectangle around each contour
+            cv2.rectangle (img2,  # draw rectangle on original training image
+                        (intX, intY),  # upper left corner
+                        (intX + intW, intY + intH),  # lower right corner
+                        (0, 0, 255),  # red
+                        3)  # thickness
+        # plt.figure()
+        # plt.imshow(img2)
+        # plt.title("Detected Contours")
+        # plt.show()
+        return contours
+    except:
+        print ("No contours detected")
+        return []
 
 
 def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
@@ -287,7 +291,7 @@ def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
         digit_detected = model.predict (img_feat.reshape (1, -1))
         result += str (digit_detected[0])
 
-    result = int (result) / 10
+    result = int (result) / 10 if result!='' else 0
     stored_value.append (result)
     ans_gt = int (''.join (str (stored_value[-2]).split ('.')))
     ans = int (''.join (str (stored_value[-1]).split ('.')))
