@@ -175,7 +175,7 @@ def wait():
 def cam(save_path):
     camera = PiCamera ()
     camera.start_preview ()
-    time.sleep (2)
+    time.sleep (3)
     camera.capture (save_path)
     print ('Captured')
 
