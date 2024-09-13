@@ -134,11 +134,17 @@ RESIZED_IMAGE_HEIGHT = 90
 CROP_COORD = 540
 memory_path = "/home"
 count_internet = 0
+### For Telegram
 node_dict = {"PH-03": "Pump House 3", "PH-02": "Pump House 2", "PR00-70": "Parijaat", "AD04-70": "Himalaya Rooftop 1",
              "AD04-71": "Himalaya Rooftop 2", "KB04-72": "Himalaya Rooftop 3", "KB04-73": "Himalaya Rooftop 4",
              "OBH00-70": "Palash Nivas 1", "OBH00-71": "Palash Nivas 2", "PH04-70": "Bakul Nivas 1",
              "PH04-71": "Bakul Nivas 2", "VN04-70": "Vindhya Rooftop 1", "VN04-71": "Vindhya Rooftop 2",
              "BB04-70": "Bodh Bhavan Rooftop 1", "BB04-71": "Bodh Bhavan Rooftop 2"}
+### For Dashboard
+node_dict_names = {"BB04-70": "BB04-70", "BB04-71": "BB04-71", "AD04-70": "KB04-70", "AD04-71": "KB04-71",
+                   "KB04-72": "KB04-72", "KB04-73": "KB04-73", "OBH00-70": "OBH00-70", "OBH00-71": "OBH00-71",
+                   "PH-03": "PH03-70", "PH-02": "PH02-70", "PH04-70": "PH04-70", "PH04-71": "PH04-71", "PR00-70": "PR00-70",
+                   "VN04-70": "VN04-70", "VN04-71": "VN04-71"}
 
 
 
@@ -427,6 +433,36 @@ def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
     # str = "file creation done "
     # error_log11.append (str)
 
+def post_image_dashbaord(image_path, node_name, max_retries=2):
+    url = "https://spcrc.iiit.ac.in/water/upload/"
+    metadata = {
+        'key1': node_name
+    }
+    try:
+        with open(image_path, 'rb') as image_file:
+            files = {'image': image_file}
+            retries = 0
+            while retries < max_retries:
+                try:
+                    response = requests.post(url, files=files, data=metadata)
+                    if response.status_code == 200:
+                        print(f"Success: {response.json()}")
+                        return True
+                    else:
+                        print(f"Failed with status code {response.status_code}: {response.json()}")
+                        pass
+                except requests.exceptions.RequestException as e:
+                    print(f"Request failed: {e}")
+                    pass
+                
+                retries += 1
+                print(f"Retrying... ({retries}/{max_retries})")
+                time.sleep(1)
+    except:
+        pass
+    print(f"Failed to upload image after {max_retries} attempts.")
+    return False
+
 def main():
     try:
         while True:
@@ -497,6 +533,9 @@ def main():
                 os.system ("sudo systemctl restart codetest.service")
 
             if str (access_csv (config_WM.device_id, "send_img")) == "1":
+                post_status = post_image_dashbaord(save_path, node_dict_names[config_WM.device_id])
+                if not post_status:
+                    print("Failed to upload image to dashboard")
                 if (datetime.datetime.now ().minute <= 30):
                     try:
                         _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
