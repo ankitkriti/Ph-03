@@ -507,8 +507,14 @@ def main():
             path = '/'
             use_percent = psutil.disk_usage (path).percent
 
-
-
+            # sending data to thingspeak
+            thingSpeak_response = requests.post(BASE_URL, data=str(round (stored_value[-1], 1)))
+        
+            # Check the response
+            if thingSpeak_response.status_code == 200:
+                print("Data sent successfully. Entry ID:", thingSpeak_response.text)
+            else:
+                print("Failed to send data. Status code:", thingSpeak_response.status_code)
 
             hello = requests.get (
                 "https://script.google.com/macros/s/AKfycbwRYxc69FWSf_qaZVlNx7ACr5UkRysUmzN_24v91yj0jgAVxR2KfGlX7XW1But5d6a7/exec")
