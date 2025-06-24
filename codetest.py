@@ -508,8 +508,12 @@ def main():
             path = '/'
             use_percent = psutil.disk_usage (path).percent
 
+
+            ank_data = 113.8
+
             # sending data to thingspeak
-            thingSpeak_response = requests.post(BASE_URL, data=str(round (stored_value[-1], 1)))
+            # thingSpeak_response = requests.post(BASE_URL, data=str(round (stored_value[-1], 1)))
+            thingSpeak_response = requests.post(BASE_URL, data=ank_data)
         
             # Check the response
             if thingSpeak_response.status_code == 200:
