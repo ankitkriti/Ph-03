@@ -179,10 +179,10 @@ def wait():
 
 
 def cam(save_path):
-    #camera = PiCamera ()
-    #camera.start_preview ()
+    camera = PiCamera ()
+    camera.start_preview ()
     time.sleep (3)
-    #camera.capture (save_path)
+    camera.capture (save_path)
     print ('Captured')
 
 
@@ -192,8 +192,8 @@ def cam(save_path):
     camera_error.append(error_log5)
 
 
-    #camera.stop_preview ()
-    #camera.close ()
+    camera.stop_preview ()
+    camera.close ()
 
 
     error_log6 = []
@@ -250,8 +250,8 @@ def get_sorted_contour(img):
 def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
     count_internet = 0
     global cons
-    # img = sio.imread (save_path)
-    img = sio.imread("/home/pi/Desktop/images/img2022-01-24-13-53-39.jpg")
+    img = sio.imread (save_path)
+    # img = sio.imread("/home/pi/Desktop/images/img2022-01-24-13-53-39.jpg")
     # img = sio.imread("/home/pi/Desktop/images/img2021-08-05-22-52-56.jpg")
     # plt.imshow(img)
     # plt.show()
