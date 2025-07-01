@@ -251,8 +251,8 @@ def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
     count_internet = 0
     global cons
     # img = sio.imread (save_path)
-    # img = sio.imread("/home/pi/Desktop/images/img2022-01-24-13-53-39.jpg")
-    img = sio.imread("/home/pi/Desktop/images/img2021-08-05-22-52-56.jpg")
+    img = sio.imread("/home/pi/Desktop/images/img2022-01-24-13-53-39.jpg")
+    # img = sio.imread("/home/pi/Desktop/images/img2021-08-05-22-52-56.jpg")
     # plt.imshow(img)
     # plt.show()
     matrix = cv2.getPerspectiveTransform (pts_source, pts_dst)
