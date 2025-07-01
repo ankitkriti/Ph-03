@@ -404,28 +404,28 @@ def func(save_path, Filename, error_log3, error_log4, error_log5, error_log6):
     f.close ()
 
     error_log11 = []
-    strr = "before sending to gsheet "
+    strr = "file creation done"
     error_log11.append (strr)
 
     # storing in google sheet
-    try:
-        requests.get ('https://script.google.com/macros/s/' + access_csv (config_WM.device_id,
-                                                                          "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s&datval=%s&error_log1=%s&error_log3=%s&error_log4=%s&error_log5=%s&error_log6=%s&error_log7=%s&error_log8=%s&error_log9=%s&error_log10=%s&error_log11=%s' % (
-                      str (Filename[-1][3:-4]), str (round (stored_value[-1], 1)), str (f_rate[-1]), str (result), str(error_log1[-1]), str(error_log3[-1]), str(error_log4[-1]), str(error_log5[-1]), str(error_log6[-1]), str(error_log7[-1]), str(error_log8[-1]), str(error_log9[-1]), str(error_log10[-1]), str(error_log11[-1]) ))
-        count_internet = 0
-    except:
-        print ("Not send to google sheets")
-        count_check = checkInternetSocket()
+    # try:
+    #     requests.get ('https://script.google.com/macros/s/' + access_csv (config_WM.device_id,
+    #                                                                       "gsheets") + '/exec?timestamp=%s&total_flow=%s&rate=%s&datval=%s&error_log1=%s&error_log3=%s&error_log4=%s&error_log5=%s&error_log6=%s&error_log7=%s&error_log8=%s&error_log9=%s&error_log10=%s&error_log11=%s' % (
+    #                   str (Filename[-1][3:-4]), str (round (stored_value[-1], 1)), str (f_rate[-1]), str (result), str(error_log1[-1]), str(error_log3[-1]), str(error_log4[-1]), str(error_log5[-1]), str(error_log6[-1]), str(error_log7[-1]), str(error_log8[-1]), str(error_log9[-1]), str(error_log10[-1]), str(error_log11[-1]) ))
+    #     count_internet = 0
+    # except:
+    #     print ("Not send to google sheets")
+    #     count_check = checkInternetSocket()
 
-        #error_log2 = []
-        #strr = "Checked internet"
-        #error_log2.append (strr)
+    #     #error_log2 = []
+    #     #strr = "Checked internet"
+    #     #error_log2.append (strr)
 
 
-        if count_check:
-            count_internet += 1
-        if count_internet > 7:
-            os.system ("sudo systemctl restart codetest.service")
+    #     if count_check:
+    #         count_internet += 1
+    #     if count_internet > 7:
+    #         os.system ("sudo systemctl restart codetest.service")
 
     camera_error = []
 ################################################################################
