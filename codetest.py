@@ -32,6 +32,8 @@ import csv
 import pdb
 import config_WM
 import psutil
+from data_send import get_epoch_time, send_onem2m_data, send_thingspeak_data, send_telegram_message
+
 
 
 
@@ -121,8 +123,12 @@ relay_pin = 23
 GPIO.setmode (GPIO.BCM)
 GPIO.setup (relay_pin, GPIO.OUT)
 
-WRITE_API = access_csv (config_WM.device_id, "write_api")  # config_WM.write_api		# Write API of Himalaya_parking
+OM2M_DATA_CONT = "WM-WF-"+access_csv (config_WM.device_id, "InNode") +"/Data"
+THINGSPEAK_WRITE_API = access_csv (config_WM.device_id, "write_api")  # config_WM.write_api		# Write API of Himalaya_parking
 BASE_URL = "https://api.thingspeak.com/update?api_key={}".format (WRITE_API)
+
+# last_hourly_update = time.time() - 3600
+
 # Meter coordinates, starting from top-left in clockwise manner
 pts_source = np.float32 (
     access_csv (config_WM.device_id, "pts_source"))  # [[391,311], [1747,319], [1750, 715], [389,685]])
@@ -530,11 +536,30 @@ def main():
                 print ("changed.......")
                 os.system ("sudo systemctl restart codetest.service")
 
+            # ====== New Data Reporting Logic ======
+            timestamp = get_epoch_time()
+            total_flow = stored_value[-1]
+            flow_rate = f_rate[-1]
+
+            print(f"\n Sample: Timestamp={timestamp}, TotalFlow={total_flow} L, FlowRate={flow_rate} L/min")
+
+            # Send data to oneM2M
+            send_onem2m_data(timestamp, total_flow, flow_rate, OM2M_DATA_CONT)
+
+            # Send data to ThingSpeak
+            send_thingspeak_data(total_flow, flow_rate, THINGSPEAK_WRITE_API)
+
+            # Send Telegram message
+            message = f"Node {access_csv (config_WM.device_id, "InNode")}\n Flow Report\n Timestamp: {timestamp}\n Total Flow: {total_flow} L\n Flow Rate: {flow_rate} L/min"
+            send_telegram_message(message)
+            # ======================================
+
             if str (access_csv (config_WM.device_id, "send_img")) == "1":
                 post_status = post_image_dashbaord(save_path, node_dict_names[config_WM.device_id])
                 if not post_status:
                     print("Failed to upload image to dashboard")
-                if (datetime.datetime.now ().minute <= 30):
+                # if (datetime.datetime.now().minute - last_hourly_update >= 60):
+                if (datetime.datetime.now().minute <= 10):
                     try:
                         _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
                         data = {"chat_id": "@IIIT_Bot_WM_RF",
