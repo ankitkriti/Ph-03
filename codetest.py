@@ -125,7 +125,7 @@ GPIO.setup (relay_pin, GPIO.OUT)
 
 OM2M_DATA_CONT = "WM-WF-"+access_csv (config_WM.device_id, "InNode") +"/Data"
 THINGSPEAK_WRITE_API = access_csv (config_WM.device_id, "write_api")  # config_WM.write_api		# Write API of Himalaya_parking
-BASE_URL = "https://api.thingspeak.com/update?api_key={}".format (WRITE_API)
+# BASE_URL = "https://api.thingspeak.com/update?api_key={}".format (WRITE_API)
 
 # last_hourly_update = time.time() - 3600
 
