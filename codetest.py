@@ -540,6 +540,7 @@ def main():
             timestamp = get_epoch_time()
             total_flow = stored_value[-1]
             flow_rate = f_rate[-1]
+            node_id = access_csv (config_WM.device_id, "InNode")
 
             print(f"\n Sample: Timestamp={timestamp}, TotalFlow={total_flow} L, FlowRate={flow_rate} L/min")
 
@@ -550,7 +551,7 @@ def main():
             send_thingspeak_data(total_flow, flow_rate, THINGSPEAK_WRITE_API)
 
             # Send Telegram message
-            message = f"Node {access_csv (config_WM.device_id, "InNode")}\n Flow Report\n Timestamp: {timestamp}\n Total Flow: {total_flow} L\n Flow Rate: {flow_rate} L/min"
+            message = f"Node {node_id}\n Flow Report\n Timestamp: {timestamp}\n Total Flow: {total_flow} L\n Flow Rate: {flow_rate} L/min"
             send_telegram_message(message)
             # ======================================
 
