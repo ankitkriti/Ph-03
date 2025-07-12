@@ -561,7 +561,7 @@ def main():
                 if not post_status:
                     print("Failed to upload image to dashboard")
                 # if (datetime.datetime.now().minute - last_hourly_update >= 60):
-                if (datetime.datetime.now().minute <= 10):
+                if (datetime.datetime.now().minute <= 15):
                     try:
                         _TOKEN = "bot2007916477:AAGHVLP0tOgV4oTw2_CRXB7AmXuVLwLkuck"
                         data = {"chat_id": "@IIIT_Bot_WM_RF",
