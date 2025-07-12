@@ -586,7 +586,7 @@ def main():
 
             t2 = int (time.time ())
             # wait()
-            delay = 300 - (t2 - t1) #capture after 5 mins
+            delay = 120 - (t2 - t1) #capture after 5 mins
             if delay <= 0:
                 delay = 0.5
             print (delay)
