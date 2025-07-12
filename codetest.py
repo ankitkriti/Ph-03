@@ -476,6 +476,7 @@ def main():
             # set LED high
             t1 = int (time.time ())
             Filename.append (str (datetime.datetime.now ().strftime ("img%Y-%m-%d-%H-%M-%S") + ".jpg"))
+            print ("Filename: ", Filename[-1])
             print ("start")
             subprocess.call (
                 "/home/pi/Desktop/waterspcrc/" + access_csv (config_WM.device_id, "fileD") + "/run_cmd_bash.sh")
